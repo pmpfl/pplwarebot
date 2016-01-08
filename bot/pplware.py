@@ -1,17 +1,13 @@
+#!/usr/bin/env python
 import tgbot
-import requests
-import os
-import urllib
-import json
 import feedparser
-from twx.botapi import InputFileInfo, InputFile, ChatAction
 from tgbot import TGCommandBase
-
 
 
 def _latestnews():
     d = feedparser.parse('http://pplware.sapo.pt/feed/')
     return d['items'][0]['link']
+
 
 class Pplware(tgbot.TGPluginBase):
 
@@ -43,12 +39,9 @@ class Pplware(tgbot.TGPluginBase):
 
     def _cron_alertlatest(self, bot):
         msg = _latestnews()
-        lmsg =  self.read_data("latest")
+        lmsg = self.read_data("latest")
         if lmsg != msg:
             self.save_data("latest", obj=msg)
-            self._send_to_users(bot, msg, 'alert')
-
-    def _send_to_users(self, bot, msg, typ):
-        for chat in self.iter_data_key_keys(key1="user"):
-            if self.read_data(chat, typ):
-                bot.send_message(chat, msg).wait()
+            for chat in self.iter_data_key_keys(key1="user"):
+                if self.read_data(chat, 'alert'):
+                    bot.send_message(chat, msg).wait()
