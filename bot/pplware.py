@@ -39,6 +39,7 @@ class Pplware(tgbot.TGPluginBase):
         bot.send_message(message.chat.id, msg).wait()
 
     def cron_go(self, bot, action, param):
+        print action
         if action == 'alert':
             self._cron_alertlatest(bot)
 
