@@ -35,7 +35,6 @@ class Pplware(tgbot.TGPluginBase):
     def latest(self, bot, message, text):
         self.save_data("user", key2=message.chat.id, obj=message.chat.id)
         msg = _latestnews()
-        self._cron_alertlatest(bot)
         bot.send_message(message.chat.id, msg).wait()
 
     def cron_go(self, bot, action, param):
