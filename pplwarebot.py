@@ -23,7 +23,7 @@ def openshift_app():
     import os
 
     bot = setup(
-        db_url='postgresql://%s:%s/indieshuffle' % (os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'], os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']),
+        db_url='postgresql://%s:%s/pplwarebot' % (os.environ['OPENSHIFT_POSTGRESQL_DB_HOST'], os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']),
         token=os.environ['TELEGRAM_KEY']
     )
     bot.set_webhook('https://%s/update/%s' % (os.environ['OPENSHIFT_APP_DNS'], bot._token))
