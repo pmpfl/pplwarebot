@@ -1,0 +1,2 @@
+#!/bin/bash
+python ${OPENSHIFT_REPO_DIR}pplwarebot.py -t ${TELEGRAM_KEY} -d 'postgresql://127.11.47.130:5432/pplware' --cron latest ''
